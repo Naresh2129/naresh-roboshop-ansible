@@ -1,0 +1,21 @@
+- name: copy mongoDB yum repo file
+  ansible.builtin.copy:
+    src: mongo.repo
+    dest: /etc/yum.repos.d/mongo.repo
+
+- name: Install Nodejs Repos
+  ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash
+
+- name: Install NodeJs
+  yum:
+    name: nodejs
+    state: installed
+
+
+
+
+#echo -e "\e[36m>>>>>>>>>>>>  Install NodeJS  <<<<<<<<<<<<\e[0m"
+#yum install nodejs -y &>>${log}
+#func_exit_status
+#
+#func_apppreq
