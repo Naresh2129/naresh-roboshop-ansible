@@ -11,11 +11,11 @@
     name: nodejs
     state: installed
 
+- name: app-preq-setup
+  ansible.builtin.import_tasks:
+      file: app-preq.yml
 
-
-
-#echo -e "\e[36m>>>>>>>>>>>>  Install NodeJS  <<<<<<<<<<<<\e[0m"
-#yum install nodejs -y &>>${log}
-#func_exit_status
-#
-#func_apppreq
+- name: Download nodejs dependencies
+  ansible.builtin.shell: npm install
+  args:
+    chdir: /app
