@@ -12,8 +12,8 @@
 
     - name: install mysql community server
       yum:
-        name: dnf install mysql-community-server -y
-        state: installed
+        name: mysql-community-server -y
+        state: present
 
     - name: start mysql service
       ansible.builtin.systemd_service:
