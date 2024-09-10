@@ -16,9 +16,11 @@
         state: present
 
     - name: start mysql service
-      ansible.builtin.systemd_service:
-        state: restarted
-        name: mysql
+      ansible.builtin.systemd:
+        name: mysqld
+        state: started
+        enabled: yes
+
 
 
     - name: set root password
