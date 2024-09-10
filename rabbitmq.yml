@@ -9,8 +9,8 @@
       ansible.builtin.shell: curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
     - name: install rabbitmq  server
       yum:
-        name: dnf install rabbitmq-server -y
-        state: installed
+        name: rabbitmq-server
+        state: present
 
     - name: start rabbitmq  service
       ansible.builtin.systemd_service:
