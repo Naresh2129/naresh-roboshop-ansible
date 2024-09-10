@@ -2,29 +2,30 @@
   hosts: all
   become: yes
   tasks:
-    - name: Configure yum repo for MySQL
+    - name: configuaration yum repo for mysql
       ansible.builtin.copy:
         src: mysql.repo
         dest: /etc/yum.repos.d/mysql.repo
 
-    - name: Disable MySQL default version
+    - name: disable mysql default version
       ansible.builtin.shell: dnf module disable mysql -y
 
-    - name: Install MySQL community server
-      ansible.builtin.yum:
-        name: mysql-community-server
+    - name: install mysql community server
+      yum:
+        name: mysql-community-server -y
         state: present
 
-    - name: Start MySQL service
-      ansible.builtin.systemd:
-        name: mysqld
+    - name: start mysql service
+      ansible.builtin.systemd_service:
         state: restarted
-        enabled: yes
+        name: mysql
 
-    - name: Set MySQL root password
-      ansible.builtin.mysql_user:
-        name: root
-        password: RoboShop@1
-        host: localhost
-        priv: "*.*:ALL"
-        state: present
+
+    - name: set root password
+      ansible.builtin.shell: mysql_secure_installation --set-root-pass RoboShop@1
+
+
+
+
+
+
