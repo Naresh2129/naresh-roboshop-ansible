@@ -17,8 +17,8 @@
     - name: update listern address
       ansible.builtin.replace:
         path: /etc/mongod.conf
-        regexp: '127.0.0.0'
-        replace: '0.0.0.0'
+        regexp: "127.0.0.0"
+        replace: "0.0.0.0"
 
     - name: start mongoDB service
       ansible.builtin.systemd:
